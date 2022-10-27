@@ -1,0 +1,20 @@
+[
+  {
+    "producto": "Pasta de Mani",
+    "precio": "400",
+    "img": "https://saboresandinos.com/wp-content/uploads/2021/05/556-Pasta-de-mani-x-485g-KING-1c.jpg",
+    "id": 1
+  },
+  {
+    "producto": "Pasta de Avellanadas Dúo",
+    "precio": "520",
+    "img": "https://masonlineprod.vtexassets.com/arquivos/ids/192074/Pasta-De-Avellana-Duo-Great-Value-350gr-1-471813.jpg?v=637841673840270000",
+    "id": 2
+  },
+  {
+    "producto": "Pate/Picadillo",
+    "precio": "100",
+    "img": "https://cdn11.bigcommerce.com/s-abmjjefojj/images/stencil/1280x1280/products/2187/13684/Swift-Productos-Argentina_Select-1000x1000__31980.1614881847.jpg?c=1&imbypass=on",
+    "id": 3
+  }
+]
