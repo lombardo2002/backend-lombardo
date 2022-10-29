@@ -1,35 +1,43 @@
 import express from 'express';
-import moment from 'moment/moment';
+import fs from 'fs';
 
 const app = express();
 
 const server = app.listen(8080,()=>console.log("te escucho servidor express :)"))
 
-const returnProductos = (route) => {
-    if (fs.existsSync(route)){
-        let data = fs.readFileSync(route, "utf-8")
-        let products = JSON.parse(data)
-        return products;
-    }else{
-        return{
+const returnProducts = (route) => {
+    if (fs.existsSync(route)) {
+        let data = fs.readFileSync(route, 'utf-8')
+        let producto = JSON.parse(data)
+        return producto;
+    } else {
+        return {
             status: "Error",
-            message:"No route found"
+            message: "No route found"
         }
     }
 }
 
-app.get('/productos', (req, res) => {
-    res.send(returnProductos('./productos.json'))
+app.get('/productos', (request, response) => {              
+    response.send(returnProducts('./productos.json'))
 })
-
-app.get('./productoRandom', (req, res)=>{
-    const id = request.params.idProduct
-    let productos = returnProductos('./productos.json')
-    let producto = productos.find((producto)=> producto.id == id);
-    if (producto){
-        return{
-            status: "success",
-            producto: res.send(producto)
+app.get('/productoRandom', (request, response) => {         
+    let prod = returnProducts('./productos.json')
+    let numRandom = parseInt(Math.random() * prod.length)
+    if (!prod.status) {
+        response.send(producto[numRandom])
+    } else {
+        response.send(prod)
+    }
+})
+app.get('/producto/:idProd', (request, response) => {    
+    const id = request.params.idProd
+    let prods = returnProducts('./productos.json')
+    let prod = prods.find((prod) => prod.id == id);
+    if (prod) {
+        return {
+            status: "Success",
+            prod: response.send(prod)
         }
     } else {
         response.send({
@@ -38,6 +46,7 @@ app.get('./productoRandom', (req, res)=>{
         })
     }
 })
+
 //let contador = 0;
 
 //app.get('/',(req, res)=>{
